@@ -1,5 +1,6 @@
 package logreader.util;
 
+//Class that contains all entry types from the log
 public class LogEntry {
     private String ipAddress;
     private String timestamp;

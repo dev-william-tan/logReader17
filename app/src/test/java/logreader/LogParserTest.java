@@ -39,14 +39,14 @@ public class LogParserTest {
         assertEquals(2614640, logEntries.size());
     }
 
-//    @Test
-//    public void testLogParserWith1gbLogFile() {
-//        List<LogEntry> logEntries = logParser.batchParsing("/Users/william/Foxtel/logReaderJava172/src/test/resources/log1gbFile.log",100);
-//        logMemory();
-//        logger.info("1gb file");
-//        assertEquals(2614640, logEntries.size());
-//
-//    }
+    @Test
+    public void testLogParserWith1gbLogFile() {
+        List<LogEntry> logEntries = logParser.batchParsing("/Users/william/Foxtel/logReaderJava172/src/test/resources/log1gbFile.log",100);
+        logMemory();
+        logger.info("1gb file");
+        assertEquals(2614640, logEntries.size());
+
+    }
 
     @Test
     public void testParseLogEntry() {

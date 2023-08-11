@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+//Class processes logs and pass them to relevant entries
 public class LogParser {
 
     private static final Logger logger = LogManager.getLogger(LogParser.class);

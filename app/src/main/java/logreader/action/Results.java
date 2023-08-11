@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+//A class that returns the result of the requested tasks
 public class Results {
 
     private static final Logger logger = LogManager.getLogger(Results.class);

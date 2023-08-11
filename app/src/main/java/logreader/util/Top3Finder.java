@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//Class that finds the Top 3 most repeated entries
 public class Top3Finder {
 
     public List<Map.Entry<String, Integer>> findTop3(List<String> elements) {
