@@ -1,15 +1,15 @@
 package logreader;
 
-import logreader.util.Top3Finder;
+import logreader.log.Top3Finder;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class Top3FinderTest {
@@ -33,14 +33,14 @@ public class Top3FinderTest {
     //Test FindTop3 when an emptyList is provided it should throw an Exception
     @Test
     public void testFindTop3WithEmptyList() {
-        List<String> elements = List.of();
-        assertThrows(Exception.class, () -> top3Finder.findTop3(elements));
+        List<Map.Entry<String, Integer>> result = top3Finder.findTop3(Collections.emptyList());
+        assertEquals(Collections.emptyList(), result);
     }
-
     //Test FindTop3 when a null is provided it should throw an Exception
     @Test
     public void testFindTop3WhenListIsNull() {
-        assertThrows(Exception.class, () -> top3Finder.findTop3(null));
+        List<Map.Entry<String, Integer>> result = top3Finder.findTop3(null);
+        assertEquals(Collections.emptyList(), result);
     }
 
 }

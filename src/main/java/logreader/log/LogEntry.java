@@ -1,4 +1,4 @@
-package logreader.util;
+package logreader.log;
 
 //Class that contains all entry types from the log
 public class LogEntry {

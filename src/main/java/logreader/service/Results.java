@@ -1,8 +1,7 @@
-package logreader.action;
+package logreader.service;
 
-import logreader.util.LogEntry;
-import logreader.util.LogParser;
-import logreader.util.Top3Finder;
+import logreader.log.LogEntry;
+import logreader.log.Top3Finder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,19 +14,13 @@ import java.util.stream.Collectors;
 public class Results {
 
     private static final Logger logger = LogManager.getLogger(Results.class);
-    private final LogParser logParser;
     private final Top3Finder top3Finder;
 
-    public Results(LogParser logParser,
-                   Top3Finder top3Finder) {
-        this.logParser = logParser;
+    public Results(Top3Finder top3Finder) {
         this.top3Finder = top3Finder;
     }
 
-    public void result(String filePath) {
-
-        List<LogEntry> logEntries = logParser.logParser(filePath);
-
+    public void printResults(List<LogEntry> logEntries) {
         //Process the log entries for desired result
         Set<String> uniqueIPs = findUniqueIps(logEntries);
         List<Map.Entry<String, Integer>> top3Url = findTop3Urls(logEntries);
@@ -66,7 +59,7 @@ public class Results {
                     .toList();
             return top3Finder.findTop3(ipAddresses);
         } catch (Exception e) {
-            logger.warn("Error finding top 3 IP addreses: " + e.getMessage());
+            logger.warn("Error finding top 3 IP addresses: " + e.getMessage());
             return List.of();
         }
     }

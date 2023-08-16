@@ -1,13 +1,11 @@
-package logreader.util;
+package logreader.log;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -26,38 +24,11 @@ public class LogParser {
                     .filter(Objects::nonNull)
                     .toList();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            logger.error("Error occurred during parsing: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
-
-    public List<LogEntry> batchParsing(String filePath, int batchSize) {
-    List<LogEntry> logEntries = new ArrayList<>();
-
-    try (Stream<String> lines = Files.lines(Path.of(filePath))) {
-        Iterator<String> lineIterator = lines.iterator();
-        List<String> batchLines = new ArrayList<>(batchSize);
-
-        while (lineIterator.hasNext()) {
-            String line = lineIterator.next();
-            batchLines.add(line);
-
-            if (batchLines.size() >= batchSize || !lineIterator.hasNext()) {
-                List<LogEntry> batchLogEntries = batchLines.stream()
-                    .map(LogParser::parseLogEntry)
-                    .filter(Objects::nonNull)
-                    .toList();
-
-                logEntries.addAll(batchLogEntries);
-                batchLines.clear();
-            }
-        }
-    } catch (IOException e) {
-        throw new RuntimeException(e);
-    }
-
-    return logEntries;
-}
 
     //Sets the extracted IP and URL into logEntries from line
     public static LogEntry parseLogEntry(String line) {
@@ -73,7 +44,6 @@ public class LogParser {
             logger.warn("Skipping invalid log entry: " + line);
             return null;
         }
-
     }
 
 }
