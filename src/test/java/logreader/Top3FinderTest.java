@@ -1,7 +1,7 @@
 package logreader;
 
 import logreader.log.LogEntry;
-import logreader.log.Top3Finder;
+import logreader.service.Top3Finder;
 import org.junit.jupiter.api.Test;
 
 import java.util.AbstractMap;

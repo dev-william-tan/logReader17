@@ -1,7 +1,7 @@
 package logreader;
 
 import logreader.log.LogParser;
-import logreader.log.Top3Finder;
+import logreader.service.Top3Finder;
 import logreader.service.FilePathProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
