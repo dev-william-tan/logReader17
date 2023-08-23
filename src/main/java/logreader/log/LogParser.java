@@ -3,9 +3,6 @@ package logreader.log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -16,18 +13,11 @@ public class LogParser {
     private static final Logger logger = LogManager.getLogger(LogParser.class);
 
     //Parses the log line and processes into LogEntries
-    public List<LogEntry> logParser (String filePath) {
-        try(Stream<String> lines = Files.lines(Path.of(filePath))) {
-
+    public List<LogEntry> logParser (Stream<String> lines)  {
             return lines
                     .map(LogParser::parseLogEntry)
                     .filter(Objects::nonNull)
                     .toList();
-
-        } catch (Exception e) {
-            logger.error("Error occurred during parsing: " + e.getMessage());
-            return Collections.emptyList();
-        }
     }
 
     //Sets the extracted IP and URL into logEntries from line
