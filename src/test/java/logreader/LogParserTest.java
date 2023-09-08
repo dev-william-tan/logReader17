@@ -1,38 +1,73 @@
 package logreader;
 
 import logreader.log.LogParser;
-import logreader.log.LogEntry;
+import logreader.records.LogEntry;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogParserTest {
 
-    private final LogParser logParser = new LogParser();
-
     @Test
-    public void testLogParser() {
-        List<String> mockLines = List.of(
-                "50.112.00.11 - admin [11/Jul/2018:17:33:01 +0200] \"GET /asset.css HTTP/1.1\" 200 3574",
-                "168.41.191.40 - - [09/Jul/2018:10:11:56 +0200] \"GET /blog/category/community/ HTTP/1.1\" 200 3574"
+    public void testSingleLine() {
+
+        var logParser = new LogParser(line -> {
+            assertEquals("myLogLine", line);
+            return new LogEntry("myIp", "myUrl");
+        });
+
+        var logMetrics = logParser.logParser(
+                Stream.of("myLogLine")
         );
-        Stream<String> actual = null;
-        List<LogEntry> logEntries = logParser.logParser(actual);
-        assertEquals(mockLines.size(), logEntries.size());
+
+        assertEquals(1, logMetrics.getIpCounts().getCountsByKey("myIp"));
+        assertEquals(1, logMetrics.getUrlCounts().getCountsByKey("myUrl"));
+
     }
 
     @Test
-    public void testParseLogEntry() {
-        // Mock log entry line
-        String mockLogLine = "50.112.00.11 - admin [11/Jul/2018:17:33:01 +0200] \"GET /asset.css HTTP/1.1\" 200 3574";
+    public void testMultiLine() {
 
-        LogEntry logEntry = LogParser.parseLogEntry(mockLogLine);
+        var logParser = new LogParser(line -> {
+            String[] subString = line.split(",");
+            return new LogEntry(subString[0], subString[1]);
+        });
 
-        assertEquals("50.112.00.11", logEntry.getIpAddress());
-        assertEquals("/asset.css", logEntry.getUrl());
+        var logMetrics = logParser.logParser(
+                Stream.of("ip1,url1", "ip2,url2", "ip1,url3")
+        );
+
+        assertEquals(2, logMetrics.getIpCounts().uniqueCounts());
+        assertEquals(3, logMetrics.getUrlCounts().uniqueCounts());
+        assertEquals(2, logMetrics.getIpCounts().getCountsByKey("ip1"));
+        assertEquals(1, logMetrics.getUrlCounts().getCountsByKey("url2"));
     }
+
+    @Test
+    public void testNullLine() {
+
+        var logParser = new LogParser(line -> null);
+        var logMetrics = logParser.logParser(
+                Stream.of("myLogLine")
+        );
+
+        assertEquals(0, logMetrics.getUrlCounts().uniqueCounts());
+        assertEquals(0, logMetrics.getIpCounts().uniqueCounts());
+    }
+
+    @Test
+    public void testEmptyStream() {
+        var logParser = new LogParser(line -> new LogEntry("myIp", "myUrl"));
+
+        var logMetrics = logParser.logParser(
+                Stream.empty()
+        );
+
+        assertEquals(0, logMetrics.getIpCounts().uniqueCounts());
+        assertEquals(0, logMetrics.getUrlCounts().uniqueCounts());
+    }
+
 
 }

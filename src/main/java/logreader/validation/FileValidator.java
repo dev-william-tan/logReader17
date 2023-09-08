@@ -5,6 +5,6 @@ import java.nio.file.Path;
 public class FileValidator {
 
     public static boolean isLogFile(Path filePath) {
-        return filePath.endsWith(".log");
+        return filePath.toString().endsWith(".log");
     }
 }

@@ -1,4 +1,4 @@
-package logreader;
+package service;
 
 import logreader.service.FilePathProvider;
 import org.junit.jupiter.api.Test;

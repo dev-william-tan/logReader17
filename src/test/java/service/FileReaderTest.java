@@ -1,4 +1,4 @@
-package logreader;
+package service;
 
 import logreader.service.FileReader;
 import org.junit.jupiter.api.Test;
@@ -23,6 +23,16 @@ public class FileReaderTest {
         assertEquals(2, actual.count());
 
         Files.delete(tempFile);
+    }
+
+    @Test
+    public void testFileReader_Fails() {
+        Path filePath = Path.of("exception_file.pdf");
+
+        Stream<String> actual = fileReader.fileReader(filePath);
+
+        assertEquals(0, actual.count());
+
     }
 
     private Path createTempFile() throws IOException {
