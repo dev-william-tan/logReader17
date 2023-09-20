@@ -1,18 +1,15 @@
-package logreader.log;
+package log;
 
-import logreader.App;
-import logreader.records.LogMetrics;
-import logreader.service.FilePathProvider;
-import logreader.service.FileReader;
+import records.LogMetrics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ResultOutput {
-    private static final Logger logger = LogManager.getLogger(App.class);
+    private static final Logger logger = LogManager.getLogger(ResultOutput.class);
 
-    public void printResults(LogMetrics logMetrics) {
-        printTopIpAddresses(logMetrics, 3);
-        printTopUrls(logMetrics, 3);
+    public void printResults(LogMetrics logMetrics, int size) {
+        printTopIpAddresses(logMetrics, size);
+        printTopUrls(logMetrics, size);
         printUniqueIpCount(logMetrics);
     }
 

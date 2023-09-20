@@ -1,6 +1,5 @@
 package service;
 
-import logreader.service.StringCounter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

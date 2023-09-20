@@ -1,8 +1,6 @@
 package records;
 
-import logreader.records.LogEntry;
-import logreader.records.LogMetrics;
-import logreader.service.StringCounter;
+import service.StringCounter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

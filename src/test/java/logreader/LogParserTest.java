@@ -1,7 +1,7 @@
 package logreader;
 
-import logreader.log.LogParser;
-import logreader.records.LogEntry;
+import log.LogParser;
+import records.LogEntry;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;

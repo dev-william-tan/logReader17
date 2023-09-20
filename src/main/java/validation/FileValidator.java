@@ -1,4 +1,4 @@
-package logreader.validation;
+package validation;
 
 import java.nio.file.Path;
 

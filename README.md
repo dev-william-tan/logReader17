@@ -1,23 +1,24 @@
 # Log Parsing Project 
 
 Simple log parsing project in Java 17 
+that reads and processes some fixed example log data. 
 
 ### Pre-requisite
 * JDK 17 or later 
 * Gradle
 
-### Build Project
-`./gradlew build`
+### Installation
+`./gradlew clean build`
 
 ### Run Project
-`./gradlew run`
+in Terminal run
+`java -jar build/libs/logReader-app.jar `
 
 ### Run Tests
 `./gradlew test`
 
 Assumptions:
-
-Log files follow the Common Log Format(CLF)
+Example logs are in Apache Log format 
 
 ### Dependencies
 * Java 17 

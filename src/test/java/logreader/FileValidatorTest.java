@@ -1,6 +1,6 @@
 package logreader;
 
-import logreader.validation.FileValidator;
+import validation.FileValidator;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;

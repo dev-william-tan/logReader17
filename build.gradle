@@ -22,6 +22,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'commons-io:commons-io:2.11.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -33,10 +34,24 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'logreader.App'
+    mainClass = 'App'
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+jar {
+    manifest{
+        attributes 'Main-Class': "App"
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    from('src/main/resources') {
+            include 'programming-task-example-data.log'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveBaseName = 'logReader-app'
 }

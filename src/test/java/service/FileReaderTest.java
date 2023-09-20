@@ -1,6 +1,5 @@
 package service;
 
-import logreader.service.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

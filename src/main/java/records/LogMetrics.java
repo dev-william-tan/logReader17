@@ -1,6 +1,6 @@
-package logreader.records;
+package records;
 
-import logreader.service.StringCounter;
+import service.StringCounter;
 
 public class LogMetrics {
 

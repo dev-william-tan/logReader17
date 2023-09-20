@@ -1,7 +1,7 @@
-package logreader.log;
+package log;
 
-import logreader.records.LogEntry;
-import logreader.records.LogMetrics;
+import records.LogEntry;
+import records.LogMetrics;
 
 import java.util.Objects;
 import java.util.function.Function;

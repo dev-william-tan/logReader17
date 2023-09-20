@@ -1,6 +1,6 @@
-package logreader.lineParser;
+package lineParser;
 
-import logreader.records.LogEntry;
+import records.LogEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
