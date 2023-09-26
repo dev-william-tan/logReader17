@@ -11,8 +11,8 @@ import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class App {
-    private static final Logger logger = LogManager.getLogger(App.class);
+public class Main {
+    private static final Logger logger = LogManager.getLogger(Main.class);
      public static void main(String[] args) throws IOException {
          Scanner scanner = new Scanner(System.in);
          FilePathProvider filePathProvider = new FilePathProvider();
