@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ResultOutput {
+
     private static final Logger logger = LogManager.getLogger(ResultOutput.class);
 
     public void printResults(LogMetrics logMetrics, int size) {
