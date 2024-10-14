@@ -34,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'App'
+    mainClass = 'Main'
 }
 
 tasks.named('test') {
@@ -44,7 +44,7 @@ tasks.named('test') {
 
 jar {
     manifest{
-        attributes 'Main-Class': "App"
+        attributes 'Main-Class': "Main"
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
@@ -54,4 +54,8 @@ jar {
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveBaseName = 'logReader-app'
+}
+
+tasks.named('run') {
+    standardInput = System.in
 }

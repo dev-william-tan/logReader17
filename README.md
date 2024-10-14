@@ -12,7 +12,7 @@ that reads and processes some fixed example log data.
 
 ### Run Project
 in Terminal run
-`java -jar build/libs/logReader-app.jar `
+`./gradlew run`
 
 ### Run Tests
 `./gradlew test`
