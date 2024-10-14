@@ -7,6 +7,13 @@ that reads and processes some fixed example log data.
 * JDK 17 or later 
 * Gradle
 
+### Setup
+Clone the repository and navigate to the project directory: 
+
+git clone https://github.com/dev-william-tan/logReader17. 
+
+git cd logReader17
+
 ### Installation
 `./gradlew clean build`
 
@@ -18,7 +25,7 @@ in Terminal run
 `./gradlew test`
 
 Assumptions:
-Example logs are in Apache Log format 
+* Example logs are in Apache Log format 
 
 ### Dependencies
 * Java 17 
